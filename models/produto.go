@@ -41,6 +41,19 @@ func GetAll() []Produto {
 	}
 		// defer executa depois de tudo seja executado
 	defer db.Close()
-	
+
 	return produtos
+}
+
+func PostProduto(nome, descricao string, preco float64, quantidade int)  {
+		db := db.ConectaDB()
+
+		insert, err := db.Prepare(
+			"insert into produtos(nome, descricao, preco, quantidade) values($1, $2, $3, $4)",
+		)
+		if err != nil {
+			panic(err.Error())
+		}
+		insert.Exec(nome, descricao, preco, quantidade)
+		defer db.Close()
 }

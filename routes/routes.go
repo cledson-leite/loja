@@ -6,6 +6,8 @@ import (
 )
 
 func Router()  {
-		http.HandleFunc("/", controller.Index)
-
+	http.HandleFunc("/", controller.Index)
+	http.HandleFunc("/novo", controller.Novo)
+	http.HandleFunc("/insert", controller.Insert)
+	
 }
